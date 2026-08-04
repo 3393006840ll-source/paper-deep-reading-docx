@@ -13,7 +13,7 @@ Contributions, reproducible bug reports, and focused documentation improvements 
 ## Pull requests
 
 - Keep changes focused and preserve the complete Skill bundle structure.
-- Do not change the invocation name \`$paper-deep-reading-docx\` without a compatibility note.
+- Do not change the invocation name `$paper-deep-reading-docx` without a compatibility note.
 - Do not invent paper facts, numerical results, formulas, or evidence locations.
 - Update the README or examples when user-facing behavior changes.
 - Run the relevant script checks before submitting.
