@@ -1,0 +1,13 @@
+interface:
+  display_name: 研0文献精读文档
+  short_description: 将学术论文制作成证据可追溯的中文研0精读Word文档
+  default_prompt: 使用 $paper-deep-reading-docx 按编号把这篇论文制作成研0精读版 Word 文档。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
