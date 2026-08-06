@@ -3,17 +3,17 @@
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Latest release](https://img.shields.io/github/v/release/3393006840ll-source/paper-deep-reading-docx?display_name=tag)](https://github.com/3393006840ll-source/paper-deep-reading-docx/releases)
 
-A Codex skill for turning numbered academic papers into evidence-traceable Chinese reading documents in Word.
+A Codex skill for turning numbered Chinese or English academic papers into structured, evidence-traceable Chinese Word reading documents.
 
 ## 中文
 
 ### 定位
 
-`paper-deep-reading-docx` 将按编号整理的中英文论文转换为结构统一、证据可追溯的中文“研0精读版”Word 文档，帮助研究者系统梳理文献内容、研究方法、证据与局限。
+`paper-deep-reading-docx` 将按编号整理的中文或英文论文转换为结构统一、证据可追溯的中文“研0精读版” Word 文档，帮助研究者系统梳理文献内容、研究方法、证据与局限。它不限定具体学科或研究对象，会根据论文类型启用适用的方法分析分支。
 
 ### 安装
 
-将完整仓库目录放入 Codex 的 skills 目录。不要只复制 `SKILL.md`，因为 `agents/`、`assets/`、`references/` 和 `scripts/` 均为 Skill 的组成部分。
+克隆仓库并安装 Python 依赖：
 
 ```bash
 git clone https://github.com/3393006840ll-source/paper-deep-reading-docx.git
@@ -21,13 +21,10 @@ cd paper-deep-reading-docx
 python -m pip install -r requirements.txt
 ```
 
-然后将目录放置到：
+将完整仓库目录放入 Codex 的 skills 目录。不要只复制 `SKILL.md`，因为 `agents/`、`assets/`、`references/` 和 `scripts/` 都是 Skill 的组成部分。
 
-`C:/Users/<用户名>/.codex/skills/paper-deep-reading-docx`
-
-或：
-
-`~/.codex/skills/paper-deep-reading-docx`
+- Windows：`C:/Users/<用户名>/.codex/skills/paper-deep-reading-docx`
+- macOS/Linux：`~/.codex/skills/paper-deep-reading-docx`
 
 ### 快速使用
 
@@ -52,6 +49,18 @@ $paper-deep-reading-docx
 3. 按固定结构生成 `<编号>_<原题名>_研0精读版.docx`。
 4. 运行结构审计，并完成 Word 渲染后的逐页视觉检查。
 
+### 验证
+
+```bash
+python -m compileall scripts
+python scripts/extract_pdf_evidence.py <paper.pdf> <evidence.txt>
+python scripts/audit_docx.py <output.docx>
+python scripts/audit_docx.py --help
+python scripts/extract_pdf_evidence.py --help
+```
+
+结构审计不能替代逐页视觉检查；正式交付前仍需确认字体、表格、分页、公式和图表没有排版问题。
+
 ### 证据标签
 
 | 标签 | 含义 |
@@ -61,48 +70,24 @@ $paper-deep-reading-docx
 | `论文未说明` | 原文未提供、但复现或评价需要的信息。 |
 | `批判性判断` | 基于证据完整性或研究设计作出的评价。 |
 
-### 验证
-
-```bash
-python scripts/extract_pdf_evidence.py <paper.pdf> <evidence.txt>
-python scripts/audit_docx.py <output.docx>
-```
-
-结构审计不能替代逐页视觉检查；正式交付前仍需确认字体、表格、分页、公式和图表没有排版问题。
-
-### 仓库结构
-
-```text
-SKILL.md
-agents/openai.yaml
-assets/icon.svg
-references/evidence-rules.md
-references/output-spec.md
-scripts/audit_docx.py
-scripts/extract_pdf_evidence.py
-examples/README.md
-```
-
 ### 原则
 
 - 论文是默认事实来源；外部研究须得到明确授权。
 - 不虚构公式、参数、精度、网格、样本量、不确定度、结论或适用范围。
 - 每个重要数字和结论都应带有页码、章节、图号或表号。
-- 明确区分作者结论、通俗解释和批判性判断。
+- 具体方法分支仅在论文适用时启用，不适用的分支简要标记为“不适用”。
 
-### 反馈
-
-请通过 [Issues](https://github.com/3393006840ll-source/paper-deep-reading-docx/issues) 提交可复现的问题、功能建议或文档改进意见。请勿上传私人、机密或受版权保护的论文原文件。
+更多示例见 [`examples/README.md`](examples/README.md)，问题与建议请提交到 [Issues](https://github.com/3393006840ll-source/paper-deep-reading-docx/issues)。
 
 ## English
 
-### Purpose
+### Overview
 
-`paper-deep-reading-docx` is a Codex skill that converts numbered Chinese or English academic papers into consistent, evidence-traceable Chinese reading documents in Word, helping researchers organize findings, methods, evidence, and limitations.
+`paper-deep-reading-docx` converts numbered Chinese or English academic papers into structured, evidence-traceable Chinese Word reading documents. It helps researchers organize findings, methods, evidence, and limitations without restricting the project to a particular discipline or research object.
 
 ### Installation
 
-Copy the complete repository into your Codex skills directory. Do not copy only `SKILL.md`: `agents/`, `assets/`, `references/`, and `scripts/` are part of the Skill bundle.
+Clone the repository and install the Python dependencies:
 
 ```bash
 git clone https://github.com/3393006840ll-source/paper-deep-reading-docx.git
@@ -110,11 +95,14 @@ cd paper-deep-reading-docx
 python -m pip install -r requirements.txt
 ```
 
-Place the directory at `C:/Users/<username>/.codex/skills/paper-deep-reading-docx` or `~/.codex/skills/paper-deep-reading-docx`.
+Copy the complete repository directory into the Codex skills directory. Do not copy only `SKILL.md`; the `agents/`, `assets/`, `references/`, and `scripts/` directories are part of the Skill.
+
+- Windows: `C:/Users/<username>/.codex/skills/paper-deep-reading-docx`
+- macOS/Linux: `~/.codex/skills/paper-deep-reading-docx`
 
 ### Quick start
 
-Invoke the Skill in Codex with:
+Invoke it in Codex:
 
 ```text
 $paper-deep-reading-docx
@@ -123,56 +111,21 @@ $paper-deep-reading-docx
 Example:
 
 ```text
-Use $paper-deep-reading-docx to read papers in three-digit filename order, create one Chinese Word document per paper, and retain source pages, figures, tables, and evidence locations.
+Use $paper-deep-reading-docx to read numbered papers in order, create one Chinese Word document per paper, and preserve source pages, figures, tables, and evidence locations.
 ```
 
-Provide the source PDFs and enable the PDF-processing and Word-document Skills required by the workflow.
+Prepare the paper PDFs and enable the PDF and Word document processing skills before use.
 
-### Workflow
-
-1. Resolve the order from the three-digit filename prefix; do not renumber or overwrite completed outputs.
-2. Extract page-separated PDF text and inspect source pages, equations, figures, and tables when needed.
-3. Generate `<number>_<original-title>_研0精读版.docx` using the fixed document structure.
-4. Run the structural audit and complete a page-by-page visual inspection of the rendered Word document.
-
-### Evidence labels
-
-| Label | Meaning |
-| --- | --- |
-| `论文明确支持` | Directly supported by source text, equations, figures, tables, or data. |
-| `研0理解` | A learner-oriented explanation or reasonable interpretation. |
-| `论文未说明` | Not reported in the paper but required for reproduction or evaluation. |
-| `批判性判断` | An evaluation based on evidence completeness or study design. |
-
-### Validation
+### Verification
 
 ```bash
+python -m compileall scripts
 python scripts/extract_pdf_evidence.py <paper.pdf> <evidence.txt>
 python scripts/audit_docx.py <output.docx>
+python scripts/audit_docx.py --help
+python scripts/extract_pdf_evidence.py --help
 ```
 
-A structural audit does not replace visual QA. Before delivery, check fonts, tables, pagination, equations, and figures page by page.
+Structural auditing does not replace page-by-page visual inspection. Before delivery, check fonts, tables, pagination, formulas, and figures in the rendered Word document.
 
-### Repository contents
-
-```text
-SKILL.md
-agents/openai.yaml
-assets/icon.svg
-references/evidence-rules.md
-references/output-spec.md
-scripts/audit_docx.py
-scripts/extract_pdf_evidence.py
-examples/README.md
-```
-
-### Principles
-
-- Treat the paper as the default factual source; use external research only when explicitly authorized.
-- Never invent equations, parameters, accuracy, mesh settings, sample sizes, uncertainty, conclusions, or applicability limits.
-- Attach a page, section, figure, or table reference to every important number and conclusion.
-- Clearly separate author claims, plain-language explanations, and critical judgments.
-
-### Feedback
-
-Please use [Issues](https://github.com/3393006840ll-source/paper-deep-reading-docx/issues) for reproducible bugs, focused feature requests, or documentation improvements. Do not upload private, confidential, or copyrighted source papers.
+See [`examples/README.md`](examples/README.md) for usage patterns and use [Issues](https://github.com/3393006840ll-source/paper-deep-reading-docx/issues) for feedback.
