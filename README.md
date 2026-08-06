@@ -9,7 +9,7 @@ A Codex skill for turning numbered academic papers into evidence-traceable Chine
 
 ### 定位
 
-`paper-deep-reading-docx` 将按编号整理的中英文论文，尤其是油气储运、多相流、CFD、实验、流量测量和工程类文献，转换为结构统一、证据可追溯的中文“研0精读版”Word 文档。
+`paper-deep-reading-docx` 将按编号整理的中英文论文转换为结构统一、证据可追溯的中文“研0精读版”Word 文档，帮助研究者系统梳理文献内容、研究方法、证据与局限。
 
 ### 安装
 
@@ -98,7 +98,7 @@ examples/README.md
 
 ### Purpose
 
-`paper-deep-reading-docx` is a Codex skill that converts numbered Chinese or English academic papers—especially oil and gas storage and transportation, multiphase flow, CFD, experimental, flow-measurement, and engineering papers—into consistent, evidence-traceable Chinese reading documents in Word.
+`paper-deep-reading-docx` is a Codex skill that converts numbered Chinese or English academic papers into consistent, evidence-traceable Chinese reading documents in Word, helping researchers organize findings, methods, evidence, and limitations.
 
 ### Installation
 
