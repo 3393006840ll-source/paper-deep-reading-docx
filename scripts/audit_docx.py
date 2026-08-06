@@ -21,7 +21,7 @@ REQUIRED_TEXT = [
     "创新点",
     "局限性",
     "批判性评价",
-    "培养方向",
+    # Accept both the legacy and generalized research-direction headings below.
     "基础知识",
     "文献卡片",
     "最后浓缩",
@@ -53,6 +53,11 @@ def main() -> int:
         errors.append("Document author metadata is not blank.")
 
     missing = [item for item in REQUIRED_TEXT if item not in full_text]
+    missing.extend(
+        " or ".join(options)
+        for options in REQUIRED_ALTERNATIVES
+        if not any(option in full_text for option in options)
+    )
     if missing:
         target = warnings if args.allow_missing_sections else errors
         target.append("Missing standard sections: " + ", ".join(missing))
