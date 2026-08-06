@@ -31,6 +31,11 @@ REQUIRED_TEXT = [
 ]
 
 
+REQUIRED_ALTERNATIVES = [
+    ("培养方向", "研究方向/实际问题"),
+]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("docx", type=Path)
