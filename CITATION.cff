@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+title: "paper-deep-reading-docx"
+version: 0.1.1
+type: software
+date-released: 2026-08-06
+authors:
+  - name: "3393006840ll-source"
+repository-code: "https://github.com/3393006840ll-source/paper-deep-reading-docx"
+license: Apache-2.0
+abstract: "A Codex skill for evidence-traceable Chinese Word reading documents from numbered Chinese or English academic papers."
+keywords:
+  - academic paper reading
+  - evidence traceability
+  - Chinese Word documents
+  - literature review
